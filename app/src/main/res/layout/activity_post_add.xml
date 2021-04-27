@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PostAddActivity">
+
+    <ImageView
+        android:id="@+id/backHomePage"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_baseline_arrow_back_ios_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="155dp"
+        android:text="İlan Ver"
+        android:textColor="@color/black"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/backHomePage"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="175dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="40dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_launcher_background"
+        app:layout_constraintEnd_toEndOf="@+id/textView4"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/kayip_edittext"
+        android:layout_width="300dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="56dp"
+        android:background="@drawable/background_edit_text"
+        android:hint="Kayıp Kişinin Adı"
+        android:paddingLeft="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.416"
+        app:layout_constraintStart_toStartOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/ilani_veren_edittext"
+        android:layout_width="300dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/background_edit_text"
+        android:hint="İlanı Veren"
+        android:paddingLeft="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/konum_edittext"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/konum_edittext"
+        app:layout_constraintTop_toBottomOf="@+id/konum_edittext"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/konum_edittext"
+        android:layout_width="300dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/background_edit_text"
+        android:hint="Konum"
+        android:paddingLeft="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/yas_edittext"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/yas_edittext"
+        app:layout_constraintTop_toBottomOf="@+id/yas_edittext"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/yas_edittext"
+        android:layout_width="300dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/background_edit_text"
+        android:hint="Yaş"
+        android:paddingLeft="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/tarih_edittext"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tarih_edittext"
+        app:layout_constraintTop_toBottomOf="@+id/tarih_edittext"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/tarih_edittext"
+        android:layout_width="300dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/background_edit_text"
+        android:hint="Tarih"
+        android:paddingLeft="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/kayip_edittext"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/kayip_edittext"
+        app:layout_constraintTop_toBottomOf="@+id/kayip_edittext"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/ekle_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/button_background"
+        android:text="Ekle"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/ilani_veren_edittext"
+        app:layout_constraintStart_toStartOf="@+id/ilani_veren_edittext"
+        app:layout_constraintTop_toBottomOf="@+id/ilani_veren_edittext"
+        tools:ignore="MissingConstraints" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

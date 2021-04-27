@@ -1,16 +1,13 @@
-package com.example.wantedapp.view
+package com.example.wantedapp.views
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.example.wantedapp.R
 
-class SignUpFragment :  Fragment(R.layout.fragment_sign_up)
-{
+class ProfileFragment  : Fragment(R.layout.fragment_profile){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
     }
-
 }
