@@ -42,6 +42,12 @@ class FeedActivity : AppCompatActivity() {
             R.id.addPost -> {
                 val intent = Intent(this, PostAddActivity::class.java)
                 startActivity(intent)
+                true
+            }
+            R.id.settings ->{
+                val intent = Intent(this,SettingsActivity::class.java)
+                startActivity(intent)
+                true
             }
             else -> false
         }

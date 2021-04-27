@@ -11,12 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WantedApp">
-        <activity android:name=".FeedActivity"
-            android:windowSoftInputMode="adjustResize"
-            ></activity>
-
+        <activity android:name=".SettingsActivity"></activity>
+        <activity
+            android:name=".FeedActivity"
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name=".PostAddActivity" />
-
         <activity android:name=".SignUpActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
