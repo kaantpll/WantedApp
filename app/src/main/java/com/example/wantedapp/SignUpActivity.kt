@@ -8,17 +8,19 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.auth.User
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
 class SignUpActivity : AppCompatActivity() {
     private var auth : FirebaseAuth = FirebaseAuth.getInstance()
     private var db : FirebaseFirestore = FirebaseFirestore.getInstance()
     private lateinit var user : FirebaseUser
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
 
-        user = auth.currentUser
+
 
         signUpBtn.setOnClickListener {
             var username = signUpUserNameText.text.toString()
@@ -31,13 +33,17 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun SignUp(username: String, password: String,email:String,age:String,phoneNumber: String) {
-        auth.createUserWithEmailAndPassword(username,password).addOnCompleteListener { task->
+        auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener { task->
             if(task.isSuccessful){
+                user = auth.currentUser
                 val intent = Intent(this,FeedActivity::class.java)
+                intent.putExtra("a",phoneNumber)
                 startActivity(intent)
-                finish()
+
                 registerUserToDatabase(username,email,password,age,phoneNumber)
             }
+        }.addOnFailureListener { e->
+            Toast.makeText(this,e.message.toString(),Toast.LENGTH_LONG).show()
         }
     }
 
@@ -56,6 +62,7 @@ class SignUpActivity : AppCompatActivity() {
         db.collection("Users").add(user).addOnCompleteListener { task->
             if(task.isSuccessful) {
             Toast.makeText(this,"Register Successful",Toast.LENGTH_SHORT).show()
+
             }
             else{
                 Toast.makeText(this,"Register Error !!",Toast.LENGTH_SHORT).show()

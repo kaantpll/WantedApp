@@ -9,16 +9,25 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.lifecycleScope
+import com.google.firebase.auth.FirebaseAuth
 import com.google.type.Color
 import kotlinx.android.synthetic.main.activity_settings.*
 import kotlinx.coroutines.*
 
 class SettingsActivity : AppCompatActivity() {
-    @InternalCoroutinesApi
+
+    private var auth = FirebaseAuth.getInstance()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
+        signOut.setOnClickListener {
+            auth.signOut()
+            val intent = Intent(this,MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
 
         val appSettingsPrefers : SharedPreferences = getSharedPreferences("AppSettings",0)
         val sharedPreferencesEdit : SharedPreferences.Editor = appSettingsPrefers.edit()

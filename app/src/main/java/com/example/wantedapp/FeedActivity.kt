@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.activity_feed.*
 class FeedActivity : AppCompatActivity() {
 
     private lateinit var toolbar : MaterialToolbar
-    private var settingsActivity = SettingsActivity()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_feed)
@@ -30,22 +30,6 @@ class FeedActivity : AppCompatActivity() {
 
         toolbar = findViewById(R.id.topBar)
         setSupportActionBar(toolbar)
-
-
-
-/*
-        val intent = Intent()
-        val check = intent.getBooleanExtra("check",false)
-
-        Toast.makeText(this,check.toString(),Toast.LENGTH_SHORT).show()
-        if(!check){
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        }
-        else{
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        }
-*/
-
 
 
 
@@ -60,8 +44,10 @@ class FeedActivity : AppCompatActivity() {
 
         when (item.itemId) {
             R.id.addPost -> {
-                val intent = Intent(this, PostAddActivity::class.java)
-                startActivity(intent)
+
+                val intentB = Intent(this, PostAddActivity::class.java)
+                startActivity(intentB)
+
                 true
             }
             R.id.settings ->{

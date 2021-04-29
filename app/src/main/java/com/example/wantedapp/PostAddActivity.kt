@@ -50,6 +50,7 @@ class PostAddActivity : AppCompatActivity() {
 
         val postId = user.uid
 
+
         ekle_button.setOnClickListener {
             var kayipKisi = kayip_edittext.text.toString()
             var tarih = tarih_edittext.text.toString()
@@ -57,7 +58,8 @@ class PostAddActivity : AppCompatActivity() {
             var konum = konum_edittext.text.toString()
             var description = description.text.toString()
             var ilaniVeren = kayip_edittext.text.toString()
-
+            var phone = phoneNumber.text.toString()
+            sharePost(kayipKisi, tarih, yas, konum, description, ilaniVeren, postId,phone)
             if(kayipKisi.isEmpty()||tarih.isEmpty()|| yas.isEmpty() || konum.isEmpty() || description.isEmpty() || ilaniVeren.isEmpty()){
                 MaterialAlertDialogBuilder(this)
                     .setTitle("Hata")
@@ -68,12 +70,10 @@ class PostAddActivity : AppCompatActivity() {
                     }
                     .show()
             }
-            else{
-                sharePost(kayipKisi,tarih,yas,konum,description,ilaniVeren,postId)
-            }
+
         }
     }
-    private fun sharePost(kayipKisi : String,tarih:String,yas:String,konum:String,description: String,ilaniVeren:String,postId:String) {
+    private fun sharePost(kayipKisi : String,tarih:String,yas:String,konum:String,description: String,ilaniVeren:String,postId:String,phone:String) {
 
         val uuid = UUID.randomUUID()
         val imageName = "${uuid}.jpg"
@@ -99,13 +99,15 @@ class PostAddActivity : AppCompatActivity() {
                         "konum" to konum,
                         "description" to description,
                         "ilaniVeren" to ilaniVeren,
-                        "paylasimTarihi" to date
+                        "paylasimTarihi" to date,
+                         "phone" to phone
+
                     )
                     db.collection("Posts").add(post).addOnCompleteListener { task ->
                         if (task.isSuccessful){
                             Toast.makeText(this,"Success", Toast.LENGTH_SHORT).show()
-                           /* val intent = Intent(this, MainActivity::class.java)
-                            startActivity(intent)*/
+                            val intent = Intent(this, MainActivity::class.java)
+                            startActivity(intent)
                         }
                     }.addOnFailureListener { e->
                         Toast.makeText(this,"Hata", Toast.LENGTH_SHORT).show()

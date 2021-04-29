@@ -75,6 +75,20 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
+        android:id="@+id/phoneNumber"
+        android:layout_width="300dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/background_edit_text"
+        android:hint="İlanı Veren"
+        android:paddingLeft="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/description"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/description"
+        app:layout_constraintTop_toBottomOf="@+id/ilani_veren_edittext"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
         android:id="@+id/konum_edittext"
         android:layout_width="150dp"
         android:layout_height="47dp"
@@ -134,15 +148,16 @@
         android:id="@+id/ekle_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="12dp"
         android:background="@drawable/button_background"
         android:text="Ekle"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/ilani_veren_edittext"
+        app:layout_constraintHorizontal_bias="0.518"
         app:layout_constraintStart_toStartOf="@+id/ilani_veren_edittext"
-        app:layout_constraintTop_toBottomOf="@+id/ilani_veren_edittext"
+        app:layout_constraintTop_toBottomOf="@+id/phoneNumber"
         tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
