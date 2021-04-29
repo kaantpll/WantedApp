@@ -15,7 +15,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.database.collection.LLRBNode
-import kotlinx.android.synthetic.main.activity_feed.*
+
 
 class FeedActivity : AppCompatActivity() {
 
@@ -24,6 +24,8 @@ class FeedActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_feed)
+
+        var bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
 
         var navController = findNavController(this,R.id.fragment)
         bottomNavigationView.setupWithNavController(navController)

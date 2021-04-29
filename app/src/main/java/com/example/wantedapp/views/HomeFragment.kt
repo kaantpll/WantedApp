@@ -6,13 +6,12 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.wantedapp.R
 import com.example.wantedapp.adapters.PostAdapter
+import com.example.wantedapp.databinding.FragmnetHomeBinding
 import com.example.wantedapp.models.Post
-import com.google.android.material.imageview.ShapeableImageView
-import com.google.android.material.shape.CornerFamily
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
-import kotlinx.android.synthetic.main.fragmnet_home.*
+
 
 
 class HomeFragment : Fragment(R.layout.fragmnet_home) {
@@ -20,14 +19,18 @@ class HomeFragment : Fragment(R.layout.fragmnet_home) {
     private val adapter = PostAdapter(arrayListOf())
     private  val db = FirebaseFirestore.getInstance()
     var postList = ArrayList<Post>()
+    private var fragmentbind : FragmnetHomeBinding? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        
 
-        postsRecyclerview.layoutManager = LinearLayoutManager(requireContext())
-        postsRecyclerview.adapter = adapter
+        val bind = FragmnetHomeBinding.bind(view)
+        fragmentbind = bind
+
+        bind.postsRecyclerview.layoutManager = LinearLayoutManager(requireContext())
+        bind.postsRecyclerview.adapter = adapter
+
 
         getData()
 

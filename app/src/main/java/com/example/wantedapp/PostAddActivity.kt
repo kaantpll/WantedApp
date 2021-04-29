@@ -12,6 +12,9 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -20,7 +23,6 @@ import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
-import kotlinx.android.synthetic.main.activity_post_add.*
 import java.util.*
 
 class PostAddActivity : AppCompatActivity() {
@@ -31,6 +33,7 @@ class PostAddActivity : AppCompatActivity() {
     private lateinit var storage : FirebaseStorage
     private lateinit var db : FirebaseFirestore
     private var user = mAuth.currentUser
+    private lateinit var imageView : ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +42,18 @@ class PostAddActivity : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
         storage = FirebaseStorage.getInstance()
         db = FirebaseFirestore.getInstance()
+        imageView = findViewById(R.id.imageView)
+        var backHomePage = findViewById<ImageView>(R.id.backHomePage)
+        var imageView = findViewById<ImageView>(R.id.imageView)
+        var ekle_button = findViewById<Button>(R.id.ekle_button)
+        var tarih_edittext = findViewById<EditText>(R.id.tarih_edittext)
+        var yas_edittext = findViewById<EditText>(R.id.yas_edittext)
+        var konum_edittext = findViewById<EditText>(R.id.konum_edittext)
+        var description = findViewById<EditText>(R.id.description)
+        var phoneNumber = findViewById<EditText>(R.id.phoneNumber)
+        var kayip_edittext= findViewById<EditText>(R.id.kayip_edittext)
+        var ilaniVeren= findViewById<EditText>(R.id.ilani_veren_edittext)
+
 
         backHomePage.setOnClickListener {
             val intent = Intent(this,FeedActivity::class.java)
@@ -57,7 +72,7 @@ class PostAddActivity : AppCompatActivity() {
             var yas = yas_edittext.text.toString()
             var konum = konum_edittext.text.toString()
             var description = description.text.toString()
-            var ilaniVeren = kayip_edittext.text.toString()
+            var ilaniVeren = ilaniVeren.text.toString()
             var phone = phoneNumber.text.toString()
             sharePost(kayipKisi, tarih, yas, konum, description, ilaniVeren, postId,phone)
             if(kayipKisi.isEmpty()||tarih.isEmpty()|| yas.isEmpty() || konum.isEmpty() || description.isEmpty() || ilaniVeren.isEmpty()){

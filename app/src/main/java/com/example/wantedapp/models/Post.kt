@@ -1,5 +1,9 @@
 package com.example.wantedapp.models
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Post(
         var kayipKisi : String,
         var konum : String,
@@ -12,4 +16,4 @@ data class Post(
         var ilaniVeren : String,
         var phone :String,
 
-)
+):Parcelable

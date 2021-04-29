@@ -3,13 +3,15 @@ package com.example.wantedapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.auth.User
-import kotlinx.android.synthetic.main.activity_sign_up.*
+
 
 class SignUpActivity : AppCompatActivity() {
     private var auth : FirebaseAuth = FirebaseAuth.getInstance()
@@ -21,6 +23,13 @@ class SignUpActivity : AppCompatActivity() {
         setContentView(R.layout.activity_sign_up)
 
 
+        var signUpUserNameText = findViewById<EditText>(R.id.signUpUserNameText)
+        var signUpEmailText = findViewById<EditText>(R.id.signUpEmailText)
+        var signUpPassword = findViewById<EditText>(R.id.signUpPassword)
+        var signUpAgeText = findViewById<EditText>(R.id.signUpAgeText)
+        var signUpPhoneNumberText = findViewById<EditText>(R.id.signUpPhoneNumberText)
+
+        var signUpBtn = findViewById<Button>(R.id.signUpBtn)
 
         signUpBtn.setOnClickListener {
             var username = signUpUserNameText.text.toString()

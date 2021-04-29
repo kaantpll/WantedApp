@@ -3,10 +3,12 @@ package com.example.wantedapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.activity_sign_up.*
+import org.w3c.dom.Text
+
 
 class MainActivity : AppCompatActivity() {
     private var auth : FirebaseAuth = FirebaseAuth.getInstance()
@@ -14,6 +16,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        var signInBtn = findViewById<Button>(R.id.signInBtn)
+        var signInUserNameText = findViewById<TextView>(R.id.signInUserNameText)
+        var signInPassword = findViewById<TextView>(R.id.signInPassword)
+        var goToSignUpText = findViewById<TextView>(R.id.goToSignUpText)
+
 
         signInBtn.setOnClickListener {
             var username = signInUserNameText.text.toString()
