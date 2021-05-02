@@ -7,6 +7,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.wantedapp.R
 import com.example.wantedapp.databinding.FragmentDescriptionBinding
 import com.example.wantedapp.models.Post
+import com.squareup.picasso.Picasso
 
 class DescriptionFragment : Fragment(R.layout.fragment_description) {
 
@@ -23,6 +24,7 @@ class DescriptionFragment : Fragment(R.layout.fragment_description) {
         fragmentBinding = bind
 
        bind.descriptionText.text = currentpost.description
+        Picasso.get().load(currentpost.mimageUrl).into(bind.shapeableImageView)
 
     }
 }

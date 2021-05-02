@@ -8,8 +8,8 @@
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/shapeableImageView"
-        android:layout_width="340dp"
-        android:layout_height="200dp"
+        android:layout_width="380dp"
+        android:layout_height="250dp"
         android:layout_marginTop="48dp"
         android:scaleType="centerCrop"
         android:src="@drawable/ic_launcher_background"
@@ -27,6 +27,7 @@
         android:layout_marginTop="24dp"
         android:text="AKsdasdasdasdasdasd"
         android:textSize="18sp"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent"

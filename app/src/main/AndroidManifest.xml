@@ -14,7 +14,7 @@
         <activity android:name=".SettingsActivity"></activity>
         <activity
             android:name=".FeedActivity"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".PostAddActivity" />
         <activity android:name=".SignUpActivity" />
         <activity android:name=".MainActivity">

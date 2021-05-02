@@ -38,8 +38,8 @@ class PostAdapter(var postList : ArrayList<Post>) : RecyclerView.Adapter<PostAda
         card_konum.text = postList[position].konum
         card_.text = postList[position].tarih
         card_yas.text = postList[position].yas
-        card_ilani_veren.text = postList[position].ilaniVeren
-        Picasso.get().load(postList[position].imageUrl).into(card_image)
+        card_ilani_veren.text = postList[position].milaniVeren
+        Picasso.get().load(postList[position].mimageUrl).into(card_image)
         val no = postList[position].phone
         call.setOnClickListener {
             val intent = Intent(Intent.ACTION_DIAL)
@@ -52,7 +52,6 @@ class PostAdapter(var postList : ArrayList<Post>) : RecyclerView.Adapter<PostAda
             view.findNavController().navigate(direction)
 
         }
-
     }
 
     override fun getItemCount(): Int {

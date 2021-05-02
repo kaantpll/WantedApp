@@ -3,15 +3,17 @@ package com.example.wantedapp.views
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.wantedapp.R
 import com.example.wantedapp.adapters.PostAdapter
 import com.example.wantedapp.databinding.FragmnetHomeBinding
 import com.example.wantedapp.models.Post
+import com.example.wantedapp.viewmodel.HomeFragmentViewModel
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
-
 
 
 class HomeFragment : Fragment(R.layout.fragmnet_home) {
@@ -21,6 +23,8 @@ class HomeFragment : Fragment(R.layout.fragmnet_home) {
     var postList = ArrayList<Post>()
     private var fragmentbind : FragmnetHomeBinding? = null
 
+    private lateinit var viewModel : HomeFragmentViewModel
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -28,11 +32,14 @@ class HomeFragment : Fragment(R.layout.fragmnet_home) {
         val bind = FragmnetHomeBinding.bind(view)
         fragmentbind = bind
 
+        viewModel = ViewModelProvider(this).get(HomeFragmentViewModel::class.java)
+
         bind.postsRecyclerview.layoutManager = LinearLayoutManager(requireContext())
         bind.postsRecyclerview.adapter = adapter
 
 
         getData()
+
 
     }
 
@@ -44,7 +51,7 @@ class HomeFragment : Fragment(R.layout.fragmnet_home) {
             }else{
 
                 val posts = snap?.documents
-
+                postList.clear()
                 if (posts != null) {
                     for(post in posts){
                         val kayipKisi = post.get("kayipKisi").toString()
@@ -61,12 +68,19 @@ class HomeFragment : Fragment(R.layout.fragmnet_home) {
 
                         postList.add(postInstance)
                         adapter.postList = postList
+
+                        if(postList.contains(post.id)){
+
+                        }else {
+                            viewModel.addData(postList)
+
+                        }
                     }
                 }
                 adapter.notifyDataSetChanged()
             }
 
-            }
+        }
 
         }
-    }
+}
