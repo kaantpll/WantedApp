@@ -14,9 +14,9 @@ import com.google.firebase.firestore.auth.User
 
 
 class SignUpActivity : AppCompatActivity() {
-    private var auth : FirebaseAuth = FirebaseAuth.getInstance()
-    private var db : FirebaseFirestore = FirebaseFirestore.getInstance()
-    private lateinit var user : FirebaseUser
+    private var auth: FirebaseAuth = FirebaseAuth.getInstance()
+    private var db: FirebaseFirestore = FirebaseFirestore.getInstance()
+    private lateinit var user: FirebaseUser
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,22 +37,22 @@ class SignUpActivity : AppCompatActivity() {
             var password = signUpPassword.text.toString()
             var age = signUpAgeText.text.toString()
             var phoneNumber = signUpPhoneNumberText.text.toString()
-            SignUp(username,password,email,age,phoneNumber)
+            SignUp(username, password, email, age, phoneNumber)
         }
     }
 
-    private fun SignUp(username: String, password: String,email:String,age:String,phoneNumber: String) {
-        auth.createUserWithEmailAndPassword(email,password).addOnCompleteListener { task->
-            if(task.isSuccessful){
+    private fun SignUp(username: String, password: String, email: String, age: String, phoneNumber: String) {
+        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
                 user = auth.currentUser
-                val intent = Intent(this,FeedActivity::class.java)
-                intent.putExtra("a",phoneNumber)
+                val intent = Intent(this, FeedActivity::class.java)
+                intent.putExtra("a", phoneNumber)
                 startActivity(intent)
 
-                registerUserToDatabase(username,email,password,age,phoneNumber)
+                registerUserToDatabase(username, email, password, age, phoneNumber)
             }
-        }.addOnFailureListener { e->
-            Toast.makeText(this,e.message.toString(),Toast.LENGTH_LONG).show()
+        }.addOnFailureListener { e ->
+            Toast.makeText(this, e.message.toString(), Toast.LENGTH_LONG).show()
         }
     }
 
@@ -60,21 +60,20 @@ class SignUpActivity : AppCompatActivity() {
     private fun registerUserToDatabase(username: String, email: String, password: String, age: String, phoneNumber: String) {
         var userId = user.uid
         var user = hashMapOf(
-            "userId" to userId,
-            "username" to username,
-            "email" to email,
-            "password" to password,
-            "age" to age,
-            "phoneNumber" to phoneNumber,
+                "userId" to userId,
+                "username" to username,
+                "email" to email,
+                "password" to password,
+                "age" to age,
+                "phoneNumber" to phoneNumber,
         )
 
-        db.collection("Users").add(user).addOnCompleteListener { task->
-            if(task.isSuccessful) {
-            Toast.makeText(this,"Register Successful",Toast.LENGTH_SHORT).show()
+        db.collection("Users").add(user).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                Toast.makeText(this, "Register Successful", Toast.LENGTH_SHORT).show()
 
-            }
-            else{
-                Toast.makeText(this,"Register Error !!",Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "Register Error !!", Toast.LENGTH_SHORT).show()
             }
         }
     }

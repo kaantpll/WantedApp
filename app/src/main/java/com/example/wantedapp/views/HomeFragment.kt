@@ -19,11 +19,11 @@ import com.google.firebase.firestore.Query
 class HomeFragment : Fragment(R.layout.fragmnet_home) {
 
     private val adapter = PostAdapter(arrayListOf())
-    private  val db = FirebaseFirestore.getInstance()
+    private val db = FirebaseFirestore.getInstance()
     var postList = ArrayList<Post>()
-    private var fragmentbind : FragmnetHomeBinding? = null
+    private var fragmentbind: FragmnetHomeBinding? = null
 
-    private lateinit var viewModel : HomeFragmentViewModel
+    private lateinit var viewModel: HomeFragmentViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -37,23 +37,21 @@ class HomeFragment : Fragment(R.layout.fragmnet_home) {
         bind.postsRecyclerview.layoutManager = LinearLayoutManager(requireContext())
         bind.postsRecyclerview.adapter = adapter
 
-
         getData()
-
 
     }
 
-    private fun getData(){
-        db.collection("Posts").orderBy("paylasimTarihi", Query.Direction.DESCENDING).addSnapshotListener{ snap, e ->
+    private fun getData() {
+        db.collection("Posts").orderBy("paylasimTarihi", Query.Direction.DESCENDING).addSnapshotListener { snap, e ->
 
-            if(e != null){
+            if (e != null) {
                 Snackbar.make(requireView(), "While getting data error", 3000).show()
-            }else{
+            } else {
 
                 val posts = snap?.documents
                 postList.clear()
                 if (posts != null) {
-                    for(post in posts){
+                    for (post in posts) {
                         val kayipKisi = post.get("kayipKisi").toString()
                         val ilaniVeren = post.get("ilaniVeren").toString()
                         val imageUrl = post.get("imageUrl").toString()
@@ -64,14 +62,14 @@ class HomeFragment : Fragment(R.layout.fragmnet_home) {
                         val paylasimTarihi = post.get("paylasimTarihi").toString()
                         val description = post.get("description").toString()
                         val phone = post.get("phone").toString()
-                        var postInstance = Post(kayipKisi, konum, paylasimTarihi, postId, tarih, yas, imageUrl, description, ilaniVeren,phone)
+                        var postInstance = Post(kayipKisi, konum, paylasimTarihi, postId, tarih, yas, imageUrl, description, ilaniVeren, phone)
 
                         postList.add(postInstance)
                         adapter.postList = postList
 
-                        if(postList.contains(post.id)){
+                        if (postList.contains(post.id)) {
 
-                        }else {
+                        } else {
                             viewModel.addData(postList)
 
                         }
@@ -82,5 +80,5 @@ class HomeFragment : Fragment(R.layout.fragmnet_home) {
 
         }
 
-        }
+    }
 }

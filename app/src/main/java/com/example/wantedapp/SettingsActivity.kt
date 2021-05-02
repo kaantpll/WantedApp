@@ -26,35 +26,34 @@ class SettingsActivity : AppCompatActivity() {
 
         signOut.setOnClickListener {
             auth.signOut()
-            val intent = Intent(this,MainActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
         }
 
-        val appSettingsPrefers : SharedPreferences = getSharedPreferences("AppSettings",0)
-        val sharedPreferencesEdit : SharedPreferences.Editor = appSettingsPrefers.edit()
-        val isNightModeOn : Boolean = appSettingsPrefers.getBoolean("NightMode",false)
+        val appSettingsPrefers: SharedPreferences = getSharedPreferences("AppSettings", 0)
+        val sharedPreferencesEdit: SharedPreferences.Editor = appSettingsPrefers.edit()
+        val isNightModeOn: Boolean = appSettingsPrefers.getBoolean("NightMode", false)
 
-       switchDarkMode.setOnClickListener {
-           if(isNightModeOn){
-               sharedPreferencesEdit.putBoolean("NightMode",false)
-               sharedPreferencesEdit.apply()
-               intent.putExtra("check",false)
+        switchDarkMode.setOnClickListener {
+            if (isNightModeOn) {
+                sharedPreferencesEdit.putBoolean("NightMode", false)
+                sharedPreferencesEdit.apply()
+                intent.putExtra("check", false)
 
-           }
-           else{
+            } else {
 
-               sharedPreferencesEdit.putBoolean("NightMode",true)
-               sharedPreferencesEdit.apply()
-               intent.putExtra("check",true)
+                sharedPreferencesEdit.putBoolean("NightMode", true)
+                sharedPreferencesEdit.apply()
+                intent.putExtra("check", true)
 
 
-           }
-       }
+            }
+        }
 
 
         backSettings.setOnClickListener {
-            val intent = Intent(this,FeedActivity::class.java)
+            val intent = Intent(this, FeedActivity::class.java)
             startActivity(intent)
             finish()
         }

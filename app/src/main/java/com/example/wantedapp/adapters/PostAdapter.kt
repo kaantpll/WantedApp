@@ -10,6 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.example.wantedapp.ChatActivity
 import com.example.wantedapp.R
 import com.example.wantedapp.models.Post
 import com.example.wantedapp.views.HomeFragmentDirections
@@ -34,6 +35,7 @@ class PostAdapter(var postList : ArrayList<Post>) : RecyclerView.Adapter<PostAda
         var card_ilani_veren = holder.view.findViewById<TextView>(R.id.card_ilani_veren)
         var card_image = holder.view.findViewById<ImageView>(R.id.card_image)
         var call = holder.view.findViewById<Button>(R.id.call)
+        var send = holder.view.findViewById<Button>(R.id.sendMessage)
         card_name.text = postList[position].kayipKisi
         card_konum.text = postList[position].konum
         card_.text = postList[position].tarih
@@ -46,6 +48,12 @@ class PostAdapter(var postList : ArrayList<Post>) : RecyclerView.Adapter<PostAda
             intent.data = Uri.parse("tel:$no")
             it.context.startActivity(intent)
         }
+
+        send.setOnClickListener {
+            val intent= Intent(it.context,ChatActivity::class.java)
+            it.context.startActivity(intent)
+        }
+
 
         holder.itemView.setOnClickListener { view->
             val direction = HomeFragmentDirections.actionHomeToDescriptionFragment(currentPost)
