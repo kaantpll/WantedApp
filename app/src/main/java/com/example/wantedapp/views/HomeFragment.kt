@@ -1,5 +1,6 @@
 package com.example.wantedapp.views
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -66,6 +67,8 @@ class HomeFragment : Fragment(R.layout.fragmnet_home) {
 
                         postList.add(postInstance)
                         adapter.postList = postList
+
+
 
                         if (postList.contains(post.id)) {
 

@@ -14,6 +14,7 @@ import androidx.navigation.Navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.collection.LLRBNode
 
 
@@ -32,7 +33,6 @@ class FeedActivity : AppCompatActivity() {
 
         toolbar = findViewById(R.id.topBar)
         setSupportActionBar(toolbar)
-
 
 
     }

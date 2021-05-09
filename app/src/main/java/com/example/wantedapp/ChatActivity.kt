@@ -1,5 +1,6 @@
 package com.example.wantedapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -19,7 +20,7 @@ class ChatActivity : AppCompatActivity() {
 
     private var db: FirebaseFirestore = FirebaseFirestore.getInstance()
     private var auth: FirebaseAuth? = FirebaseAuth.getInstance()
-    private var user: FirebaseUser? = auth?.currentUser
+    private var user: FirebaseUser?= auth?.currentUser
     var messageList = ArrayList<Message>()
     private var adapter = MessageAdapter(arrayListOf())
 
@@ -36,11 +37,18 @@ class ChatActivity : AppCompatActivity() {
         chatRv.adapter = adapter
         chatRv.setHasFixedSize(true)
 
+        val postId =user?.uid
+
+
+
         sendMessageButton.setOnClickListener {
             val text = enterMessageEditText.text.toString()
             var username = "adsf"
             var imageUrl = "dsf"
-            sendMessageFun(2,text,username,imageUrl)
+            var id = postId
+            if (id != null) {
+                sendMessageFun(id,text,username,imageUrl,)
+            }
         }
 
         getMessages()
@@ -48,7 +56,7 @@ class ChatActivity : AppCompatActivity() {
 
     }
 
-    private fun sendMessageFun(i: Int, text: String, username: String, imageUrl: String) {
+    private fun sendMessageFun(i:String, text: String, username: String, imageUrl: String) {
         val myMessage = Message(i,text,username,imageUrl)
 
         db.collection("Message").add(myMessage).addOnCompleteListener { task->
@@ -63,7 +71,7 @@ class ChatActivity : AppCompatActivity() {
 
 
     private fun getMessages() {
-        db.collection("Message").orderBy("date", Query.Direction.DESCENDING).addSnapshotListener { snapshot, e ->
+        db.collection("Message").orderBy("message", Query.Direction.DESCENDING).addSnapshotListener { snapshot, e ->
             if (e != null) {
                 e.printStackTrace()
             } else {
@@ -75,7 +83,7 @@ class ChatActivity : AppCompatActivity() {
                     for (messageI in messages) {
                         val message = messageI.get("message").toString();
 
-                        val myMessage = Message(1, message, "kaan", "aaa")
+                        val myMessage = Message(1.toString(), message, "kaan", "aaa")
 
                         messageList.add(myMessage)
                         adapter.messageList = messageList

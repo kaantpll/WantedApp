@@ -8,4 +8,4 @@ data class User(
         val phoneNo : String,
         val userId : String,
         val username : String,
-)
+    )

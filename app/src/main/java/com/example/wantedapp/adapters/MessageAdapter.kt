@@ -24,10 +24,10 @@ class MessageAdapter(var messageList: ArrayList<Message>) :
 
     private lateinit var firebaseUser: FirebaseUser
 
-    class MyViewHolder(var view: View) : RecyclerView.ViewHolder(view) {
-        val cardUsername = view.findViewById<TextView>(R.id.userNameChatRight)
-        val cardImageView = view.findViewById<ShapeableImageView>(R.id.card_left_image)
-        val cardMessage = view.findViewById<TextView>(R.id.messageChatLeft)
+    class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val cardUsername: TextView = view.findViewById(R.id.userNameChat)
+        val cardImageView :ShapeableImageView= view.findViewById(R.id.card_image)
+        val cardMessage :TextView= view.findViewById(R.id.messageChat)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -54,10 +54,10 @@ class MessageAdapter(var messageList: ArrayList<Message>) :
 
     override fun getItemViewType(position: Int): Int {
         firebaseUser = FirebaseAuth.getInstance().currentUser
-        if (messageList[position].id.toString() == firebaseUser!!.uid) {
-            return MESSAGE_TYPE_RIGHT
+        return if (messageList[position].id == firebaseUser!!.uid) {
+            MESSAGE_TYPE_RIGHT
         } else {
-            return MESSAGE_TYPE_LEFT
+            MESSAGE_TYPE_LEFT
         }
 
     }

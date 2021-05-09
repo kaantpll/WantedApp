@@ -55,6 +55,7 @@ class PostAddActivity : AppCompatActivity() {
         var ilaniVeren = findViewById<EditText>(R.id.ilani_veren_edittext)
 
 
+
         backHomePage.setOnClickListener {
             val intent = Intent(this, FeedActivity::class.java)
             startActivity(intent)
@@ -65,6 +66,8 @@ class PostAddActivity : AppCompatActivity() {
         }
 
         val postId = user.uid
+
+
 
 
         ekle_button.setOnClickListener {

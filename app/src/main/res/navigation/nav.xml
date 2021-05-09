@@ -20,10 +20,10 @@
         android:label="SearchFragment" >
         <action
             android:id="@+id/action_searchFragment_to_profileFragment"
-            app:destination="@id/profile" />
+            app:destination="@id/profilePhoneNumber" />
     </fragment>
     <fragment
-        android:id="@+id/profile"
+        android:id="@+id/profilePhoneNumber"
         android:name="com.example.wantedapp.views.ProfileFragment"
         android:label="ProfileFragment" />
     <fragment

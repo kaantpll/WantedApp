@@ -14,7 +14,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/card_right_image"
+            android:id="@+id/card_image"
             android:layout_width="67dp"
             android:layout_height="57dp"
             android:layout_marginEnd="16dp"
@@ -28,7 +28,7 @@
             tools:ignore="MissingConstraints" />
 
         <TextView
-            android:id="@+id/userNameChatRight"
+            android:id="@+id/userNameChat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -42,7 +42,7 @@
             tools:ignore="MissingConstraints" />
 
         <TextView
-            android:id="@+id/messageChatRight"
+            android:id="@+id/messageChat"
             android:layout_width="277dp"
             android:layout_height="22dp"
             android:layout_marginStart="16dp"
@@ -53,7 +53,7 @@
             android:textStyle="italic"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/userNameChatRight"
+            app:layout_constraintTop_toBottomOf="@+id/userNameChat"
             app:layout_constraintVertical_bias="0.428"
             tools:ignore="MissingConstraints" />
     </androidx.constraintlayout.widget.ConstraintLayout>
