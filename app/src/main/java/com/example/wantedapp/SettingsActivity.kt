@@ -1,5 +1,6 @@
 package com.example.wantedapp
 
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.media.Image
@@ -31,22 +32,20 @@ class SettingsActivity : AppCompatActivity() {
             finish()
         }
 
-        val appSettingsPrefers: SharedPreferences = getSharedPreferences("AppSettings", 0)
+        val appSettingsPrefers: SharedPreferences = getSharedPreferences("AppSettings", Context.MODE_PRIVATE)
         val sharedPreferencesEdit: SharedPreferences.Editor = appSettingsPrefers.edit()
         val isNightModeOn: Boolean = appSettingsPrefers.getBoolean("NightMode", false)
 
         switchDarkMode.setOnClickListener {
             if (isNightModeOn) {
-                sharedPreferencesEdit.putBoolean("NightMode", false)
-                sharedPreferencesEdit.apply()
-                intent.putExtra("check", false)
-
-            } else {
-
+                setTheme(R.style.Theme_WantedApp_Dark)
                 sharedPreferencesEdit.putBoolean("NightMode", true)
                 sharedPreferencesEdit.apply()
-                intent.putExtra("check", true)
 
+            } else {
+                setTheme(R.style.Theme_WantedApp)
+                sharedPreferencesEdit.putBoolean("NightMode", false)
+                sharedPreferencesEdit.apply()
 
             }
         }

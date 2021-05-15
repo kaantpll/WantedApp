@@ -18,11 +18,18 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import com.example.wantedapp.database.DatabaseHelper
+import com.example.wantedapp.database.PostDao
+import com.example.wantedapp.models.Post
+import com.example.wantedapp.viewmodel.HomeFragmentViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
+import com.google.type.DateTime
 import java.util.*
 
 class PostAddActivity : AppCompatActivity() {
@@ -34,6 +41,8 @@ class PostAddActivity : AppCompatActivity() {
     private lateinit var db: FirebaseFirestore
     private var user = mAuth.currentUser
     private lateinit var imageView: ImageView
+
+    private lateinit var viewModel: HomeFragmentViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,6 +64,9 @@ class PostAddActivity : AppCompatActivity() {
         var ilaniVeren = findViewById<EditText>(R.id.ilani_veren_edittext)
 
 
+        viewModel = ViewModelProvider(this).get(HomeFragmentViewModel::class.java)
+
+
 
         backHomePage.setOnClickListener {
             val intent = Intent(this, FeedActivity::class.java)
@@ -69,7 +81,6 @@ class PostAddActivity : AppCompatActivity() {
 
 
 
-
         ekle_button.setOnClickListener {
             var kayipKisi = kayip_edittext.text.toString()
             var tarih = tarih_edittext.text.toString()
@@ -79,6 +90,7 @@ class PostAddActivity : AppCompatActivity() {
             var ilaniVeren = ilaniVeren.text.toString()
             var phone = phoneNumber.text.toString()
             sharePost(kayipKisi, tarih, yas, konum, description, ilaniVeren, postId, phone)
+
             if (kayipKisi.isEmpty() || tarih.isEmpty() || yas.isEmpty() || konum.isEmpty() || description.isEmpty() || ilaniVeren.isEmpty()) {
                 MaterialAlertDialogBuilder(this)
                         .setTitle("Hata")
@@ -93,6 +105,7 @@ class PostAddActivity : AppCompatActivity() {
         }
     }
 
+
     private fun sharePost(kayipKisi: String, tarih: String, yas: String, konum: String, description: String, ilaniVeren: String, postId: String, phone: String) {
 
         val uuid = UUID.randomUUID()
@@ -102,6 +115,7 @@ class PostAddActivity : AppCompatActivity() {
 
         val pictureReferance = reference.child("images").child(imageName)
 
+        val paylasimTarihi = DateTime.HOURS_FIELD_NUMBER
         if (selectedPictureFromGallery != null) {
             pictureReferance.putFile(selectedPictureFromGallery!!).addOnSuccessListener { task ->
                 val loadedPictureReferance =
@@ -120,12 +134,18 @@ class PostAddActivity : AppCompatActivity() {
                             "description" to description,
                             "ilaniVeren" to ilaniVeren,
                             "paylasimTarihi" to date,
-                            "phone" to phone
-
+                            "phone" to phone,
+                            "paylasimTarihi" to paylasimTarihi
                     )
+                    val postInstance = Post(kayipKisi,konum,paylasimTarihi.toString(),postId,tarih,yas,url,description,ilaniVeren,phone)
+
+                    viewModel.addSingleData(postInstance)
+
                     db.collection("Posts").add(post).addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
+
+
                             val intent = Intent(this, MainActivity::class.java)
                             startActivity(intent)
                         }
@@ -136,6 +156,7 @@ class PostAddActivity : AppCompatActivity() {
             }
         }
     }
+
 
 
     private fun selectImage() {

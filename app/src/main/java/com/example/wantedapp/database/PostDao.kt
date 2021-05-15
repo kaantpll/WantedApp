@@ -1,5 +1,7 @@
 package com.example.wantedapp.database
 
+import android.media.Image
+import android.widget.ImageView
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
@@ -12,6 +14,9 @@ interface PostDao {
 
     @Insert
     suspend fun insertAll(posts : List<Post>)
+
+    @Insert
+    suspend fun insert(post : Post)
 
     @Query("DELETE  FROM posts")
     suspend fun delete()

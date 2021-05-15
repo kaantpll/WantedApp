@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.wantedapp.R
@@ -69,13 +70,7 @@ class HomeFragment : Fragment(R.layout.fragmnet_home) {
                         adapter.postList = postList
 
 
-
-                        if (postList.contains(post.id)) {
-
-                        } else {
-                            viewModel.addData(postList)
-
-                        }
+                        //viewModel.addSingleData(postInstance)
                     }
                 }
                 adapter.notifyDataSetChanged()
