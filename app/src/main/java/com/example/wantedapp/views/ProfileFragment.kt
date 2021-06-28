@@ -2,7 +2,9 @@ package com.example.wantedapp.views
 
 import android.Manifest
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.ImageDecoder
@@ -44,18 +46,20 @@ class ProfileFragment  : Fragment(R.layout.fragment_profile){
         super.onViewCreated(view, savedInstanceState)
 
         val binding = FragmentProfileBinding.bind(view)
+        val sharedPref : SharedPreferences =
+            requireContext().getSharedPreferences("PREFERENCE_NAME", Context.MODE_PRIVATE)
+
+
         fragmentBinding = binding
 
         imageView = view.findViewById(R.id.userImage)
 
         imageView.setOnClickListener {
             selectImage()
-            
+
         }
         getData()
-
     }
-
     private fun getData()
     {
         db.collection("Users").addSnapshotListener{
@@ -103,7 +107,7 @@ class ProfileFragment  : Fragment(R.layout.fragment_profile){
             grantResults: IntArray
     ) {
         if (requestCode == 1) {
-            if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
                 val galeriIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
                 startActivityForResult(galeriIntent, 2)

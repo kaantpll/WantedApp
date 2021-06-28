@@ -1,21 +1,15 @@
-package com.example.wantedapp
+package com.example.wantedapp.activities
 
 import android.content.Intent
-import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.CalendarContract
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
-import android.widget.Toolbar
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.Navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.wantedapp.R
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.collection.LLRBNode
 
 
 class FeedActivity : AppCompatActivity() {
@@ -28,7 +22,7 @@ class FeedActivity : AppCompatActivity() {
 
         var bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
 
-        var navController = findNavController(this,R.id.fragment)
+        var navController = findNavController(this, R.id.fragment)
         bottomNavigationView.setupWithNavController(navController)
 
         toolbar = findViewById(R.id.topBar)
@@ -53,7 +47,7 @@ class FeedActivity : AppCompatActivity() {
                 true
             }
             R.id.settings ->{
-                val intent = Intent(this,SettingsActivity::class.java)
+                val intent = Intent(this, SettingsActivity::class.java)
                 startActivity(intent)
                 true
             }

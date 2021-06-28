@@ -1,6 +1,5 @@
-package com.example.wantedapp
+package com.example.wantedapp.activities
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -8,6 +7,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.wantedapp.R
 import com.example.wantedapp.adapters.MessageAdapter
 import com.example.wantedapp.models.Message
 import com.google.firebase.auth.FirebaseAuth
@@ -39,36 +39,31 @@ class ChatActivity : AppCompatActivity() {
 
         val postId =user?.uid
 
-
-
         sendMessageButton.setOnClickListener {
             val text = enterMessageEditText.text.toString()
-            var username = "adsf"
-            var imageUrl = "dsf"
+            val username = user
             var id = postId
             if (id != null) {
-                sendMessageFun(id,text,username,imageUrl,)
+                sendMessageFun(id,text,"")
             }
         }
-
         getMessages()
-
-
     }
 
-    private fun sendMessageFun(i:String, text: String, username: String, imageUrl: String) {
-        val myMessage = Message(i,text,username,imageUrl)
+    private fun sendMessageFun(i:String, text: String, username: String?) {
+        val myMessage = username?.let { Message(i,text, it) }
 
-        db.collection("Message").add(myMessage).addOnCompleteListener { task->
-            if(task.isSuccessful){
-                Toast.makeText(applicationContext,"Sending",Toast.LENGTH_SHORT).show()
+        if (myMessage != null) {
+            db.collection("Message").add(myMessage).addOnCompleteListener { task->
+                if(task.isSuccessful){
+                    Toast.makeText(applicationContext,"Sending",Toast.LENGTH_SHORT).show()
+                }
+            }?.addOnFailureListener { e->
+                Toast.makeText(applicationContext,"Error",Toast.LENGTH_SHORT).show()
+
             }
-        }?.addOnFailureListener { e->
-            Toast.makeText(applicationContext,"Error",Toast.LENGTH_SHORT).show()
-
         }
     }
-
 
     private fun getMessages() {
         db.collection("Message").orderBy("message", Query.Direction.DESCENDING).addSnapshotListener { snapshot, e ->
@@ -82,8 +77,8 @@ class ChatActivity : AppCompatActivity() {
 
                     for (messageI in messages) {
                         val message = messageI.get("message").toString();
-
-                        val myMessage = Message(1.toString(), message, "kaan", "aaa")
+                
+                        val myMessage = Message("sdaasdadad", message,"")
 
                         messageList.add(myMessage)
                         adapter.messageList = messageList

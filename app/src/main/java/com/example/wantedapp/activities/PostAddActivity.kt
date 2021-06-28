@@ -1,8 +1,7 @@
-package com.example.wantedapp
+package com.example.wantedapp.activities
 
 import android.Manifest
 import android.app.Activity
-import android.app.Dialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -18,10 +17,8 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.wantedapp.database.DatabaseHelper
-import com.example.wantedapp.database.PostDao
+import com.example.wantedapp.R
 import com.example.wantedapp.models.Post
 import com.example.wantedapp.viewmodel.HomeFragmentViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder

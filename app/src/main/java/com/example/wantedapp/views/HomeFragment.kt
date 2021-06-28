@@ -30,7 +30,6 @@ class HomeFragment : Fragment(R.layout.fragmnet_home) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         val bind = FragmnetHomeBinding.bind(view)
         fragmentbind = bind
 
@@ -44,7 +43,7 @@ class HomeFragment : Fragment(R.layout.fragmnet_home) {
     }
 
     private fun getData() {
-        db.collection("Posts").orderBy("paylasimTarihi", Query.Direction.DESCENDING).addSnapshotListener { snap, e ->
+        db.collection("Posts").orderBy("tarih", Query.Direction.ASCENDING).addSnapshotListener { snap, e ->
 
             if (e != null) {
                 Snackbar.make(requireView(), "While getting data error", 3000).show()
@@ -69,8 +68,6 @@ class HomeFragment : Fragment(R.layout.fragmnet_home) {
                         postList.add(postInstance)
                         adapter.postList = postList
 
-
-                        //viewModel.addSingleData(postInstance)
                     }
                 }
                 adapter.notifyDataSetChanged()

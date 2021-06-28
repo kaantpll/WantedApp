@@ -31,8 +31,6 @@ class SearchFragment : Fragment(R.layout.fragment_search){
 
         viewModel  = ViewModelProvider(this).get(HomeFragmentViewModel::class.java)
 
-
-
         bind.searchRv.layoutManager = LinearLayoutManager(requireContext())
         bind.searchRv.adapter = searchAdapter
 
@@ -48,7 +46,6 @@ class SearchFragment : Fragment(R.layout.fragment_search){
             }
 
         })
-
 
     }
     private fun searchNote(query: String){

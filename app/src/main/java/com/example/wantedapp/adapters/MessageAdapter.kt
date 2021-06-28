@@ -26,7 +26,6 @@ class MessageAdapter(var messageList: ArrayList<Message>) :
 
     class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val cardUsername: TextView = view.findViewById(R.id.userNameChat)
-        val cardImageView :ShapeableImageView= view.findViewById(R.id.card_image)
         val cardMessage :TextView= view.findViewById(R.id.messageChat)
     }
 
@@ -44,8 +43,7 @@ class MessageAdapter(var messageList: ArrayList<Message>) :
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val message = messageList[position]
         holder.cardUsername.text = message.userName
-        Picasso.get().load(message.imageUrl).into(holder.cardImageView)
-        holder.cardMessage.text = message.userName
+        holder.cardMessage.text = message.message
 
     }
 

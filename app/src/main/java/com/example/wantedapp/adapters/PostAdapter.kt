@@ -10,7 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.example.wantedapp.ChatActivity
+import com.example.wantedapp.activities.ChatActivity
 import com.example.wantedapp.R
 import com.example.wantedapp.models.Post
 import com.example.wantedapp.views.HomeFragmentDirections
@@ -50,10 +50,10 @@ class PostAdapter(var postList : ArrayList<Post>) : RecyclerView.Adapter<PostAda
         }
 
         send.setOnClickListener {
-            val intent= Intent(it.context,ChatActivity::class.java)
+            val intent= Intent(it.context, ChatActivity::class.java)
+            intent.putExtra("keyM",postList[position].milaniVeren)
             it.context.startActivity(intent)
         }
-
 
         holder.itemView.setOnClickListener { view->
             val direction = HomeFragmentDirections.actionHomeToDescriptionFragment(currentPost)

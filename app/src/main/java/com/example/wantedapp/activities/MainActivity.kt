@@ -1,4 +1,4 @@
-package com.example.wantedapp
+package com.example.wantedapp.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,8 +6,8 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import com.example.wantedapp.R
 import com.google.firebase.auth.FirebaseAuth
-import org.w3c.dom.Text
 
 
 class MainActivity : AppCompatActivity() {
@@ -29,12 +29,12 @@ class MainActivity : AppCompatActivity() {
             SignIn(username,password)
         }
         goToSignUpText.setOnClickListener {
-            val intent = Intent(this,SignUpActivity::class.java)
+            val intent = Intent(this, SignUpActivity::class.java)
                 startActivity(intent)
         }
 
         if(user!=null){
-            val intent = Intent(this,FeedActivity::class.java)
+            val intent = Intent(this, FeedActivity::class.java)
             startActivity(intent)
             finish()
         }
@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
     private fun SignIn(username: String, password: String) {
         auth.signInWithEmailAndPassword(username,password).addOnCompleteListener { task->
             if(task.isSuccessful){
-                val intent = Intent(this,FeedActivity::class.java)
+                val intent = Intent(this, FeedActivity::class.java)
                 startActivity(intent)
             }
         }.addOnFailureListener {

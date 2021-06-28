@@ -19,9 +19,6 @@ class HomeFragmentViewModel(application: Application)  : BaseViewModel(applicati
 
     private  var  dao = DatabaseHelper(getApplication()).dao()
 
-
-
-
      fun addData(post : List<Post>) =viewModelScope.launch {
         dao.delete()
     }
